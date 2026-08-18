@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دگردیس — تشخیص و تبدیل فرمت تصویر بین ۱۸ فرمت</title>
+<meta name="description" content="{{ site_description }}">
+<meta name="keywords" content="تبدیل فرمت عکس, تشخیص فرمت تصویر, تبدیل jpg به png, تبدیل webp, تبدیل heic, ابزار آنلاین تبدیل عکس, دگردیس">
+<meta name="author" content="دگردیس">
+<link rel="canonical" href="{{ site_url }}/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:title" content="دگردیس — تشخیص و تبدیل فرمت تصویر">
+<meta property="og:description" content="{{ site_description }}">
+<meta property="og:url" content="{{ site_url }}/">
+<meta property="og:locale" content="fa_IR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="دگردیس — تشخیص و تبدیل فرمت تصویر">
+<meta name="twitter:description" content="{{ site_description }}">
+
+<meta name="theme-color" content="#141210">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23141210'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23c99a4b' font-family='sans-serif' font-weight='800'%3Eد%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "دگردیس",
+  "alternateName": "Degardis",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Any (وب‌محور)",
+  "description": "ابزار آنلاین تشخیص فرمت واقعی فایل‌های تصویری از روی محتوای آن‌ها و تبدیل بین ۱۸ فرمت مختلف تصویر.",
+  "url": "{{ site_url }}/",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "IRR"
+  }
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="brand"><span class="mark">د</span> دگردیس<span class="brand-sub">آزمایشگاه فرمت تصویر</span></div>
+    <nav class="site-nav">
+      <a href="#catalog">کاتالوگ فرمت‌ها</a>
+      <a href="#lab">ابزار تبدیل</a>
+      <a href="#how">روش کار</a>
+    </nav>
+    <a href="#lab" class="header-cta">شروع تبدیل ↗</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">FORMAT DETECTION ENGINE</span>
+      <h1>دگردیسِ هر عکس،<br><em>در چند بایت اول</em> فایلش نوشته شده.</h1>
+      <p class="lead">
+        فایل را بده، ما با تحلیل ساختار داخلی‌اش (نه فقط پسوند نامش) فرمت واقعی را تشخیص می‌دهیم،
+        بعد خودت انتخاب می‌کنی به کدام یک از ۱۸ فرمت دگردیس شود.
+      </p>
+      <div class="hero-actions">
+        <a href="#lab" class="btn btn-primary">آپلود عکس و تبدیل →</a>
+        <a href="#catalog" class="btn btn-ghost">دیدن کاتالوگ فرمت‌ها</a>
+      </div>
+    </div>
+    <div class="morph-strip" aria-hidden="true">
+      <div class="morph-strip-track">
+        <span class="mchip">.jpg</span><span class="marrow">→</span>
+        <span class="mchip">.webp</span><span class="marrow">→</span>
+        <span class="mchip">.heic</span><span class="marrow">→</span>
+        <span class="mchip">.png</span><span class="marrow">→</span>
+        <span class="mchip">.tiff</span><span class="marrow">→</span>
+        <span class="mchip">.avif</span><span class="marrow">→</span>
+        <span class="mchip">.psd</span><span class="marrow">→</span>
+        <span class="mchip">.icns</span><span class="marrow">→</span>
+        <!-- تکرار برای حلقه‌ی بی‌درز -->
+        <span class="mchip">.jpg</span><span class="marrow">→</span>
+        <span class="mchip">.webp</span><span class="marrow">→</span>
+        <span class="mchip">.heic</span><span class="marrow">→</span>
+        <span class="mchip">.png</span><span class="marrow">→</span>
+        <span class="mchip">.tiff</span><span class="marrow">→</span>
+        <span class="mchip">.avif</span><span class="marrow">→</span>
+        <span class="mchip">.psd</span><span class="marrow">→</span>
+        <span class="mchip">.icns</span><span class="marrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="catalog">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">CATALOG — 18 FORMATS</span>
+        <h2>کاتالوگ کامل فرمت‌های تصویری</h2>
+        <p>هر کارت یک برگه‌ی مشخصات است: پسوند، کاربرد اصلی، و سطح پشتیبانی این آزمایشگاه برای تبدیل.</p>
+      </div>
+      <div class="legend">
+        <span class="dot full">تبدیل کامل</span>
+        <span class="dot extended">نیازمند افزونه</span>
+        <span class="dot detect">فقط شناسایی</span>
+      </div>
+    </div>
+    <div class="catalog" id="catalogGrid">
+      <!-- با جاوااسکریپت از /api/formats پر می‌شود -->
+    </div>
+  </div>
+</section>
+
+<section class="lab section" id="lab">
+  <div class="wrap lab-grid">
+    <div>
+      <span class="eyebrow">THE LIGHT TABLE</span>
+      <h2 style="margin-top:10px; font-size:clamp(24px,3vw,32px); font-weight:800;">میز نور — عکست رو بذار روی میز</h2>
+      <p style="color:var(--muted); max-width:60ch; margin-top:10px;">
+        فایل را بکش و رها کن یا انتخاب کن. فرمت ورودی به‌صورت خودکار شناسایی می‌شود، سپس فرمت خروجی را از میان گزینه‌های فعال انتخاب کن.
+      </p>
+    </div>
+
+    <div class="light-table">
+      <div class="light-table-inner" id="dropzone" tabindex="0" role="button" aria-label="آپلود تصویر">
+        <div class="icon">⇪</div>
+        <h3 id="dzTitle">فایل را اینجا رها کن</h3>
+        <p>یا کلیک کن تا از دستگاهت انتخاب کنی — حداکثر ۲۰ مگابایت</p>
+        <div class="hint-mono">JPEG · PNG · WEBP · GIF · BMP · TIFF · ICO · ICNS · PSD · HEIC · AVIF · SVG · RAW · DNG · XCF · EPS · PDF</div>
+        <input type="file" id="fileInput" accept="*/*">
+      </div>
+    </div>
+
+    <div class="result-zone" id="resultZone">
+      <div class="specimen">
+        <div class="thumb" id="thumb"></div>
+        <div class="meta">
+          <div class="ext-big" id="detectedExt">—</div>
+          <div class="method" id="detectedMethod"></div>
+          <div class="stats" id="detectedStats"></div>
+          <div class="note" id="detectedNote" style="display:none;"></div>
+        </div>
+      </div>
+
+      <div class="target-picker">
+        <h4>SELECT OUTPUT FORMAT</h4>
+        <div class="chips" id="targetChips"></div>
+      </div>
+
+      <div class="convert-bar">
+        <button class="btn btn-primary" id="convertBtn" disabled>تبدیل کن</button>
+        <span class="status-line" id="statusLine"></span>
+      </div>
+
+      <div class="download-card" id="downloadCard">
+        <div class="info">
+          فایل خروجی آماده شد: <b id="downloadName"></b>
+          <div class="sizes" id="downloadSizes"></div>
+        </div>
+        <a href="#" id="downloadBtn" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.5);">دانلود فایل ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">HOW IT WORKS</span>
+        <h2>فرمت از روی محتوا تشخیص داده می‌شود، نه اسم فایل</h2>
+        <p>حتی اگر پسوند فایل را عمداً عوض کنی، موتور تشخیص همچنان فرمت واقعی را پیدا می‌کند.</p>
+      </div>
+    </div>
+    <div class="catalog" style="grid-template-columns: repeat(auto-fill, minmax(220px,1fr));">
+      <div class="card">
+        <div><div class="ext">۰۱</div><div class="name">خواندن سرآیند فایل</div>
+        <div class="use">چند بایت اول هر فایل، امضای منحصربه‌فردی دارد؛ مثلاً PNG همیشه با ‎‎‎‎89 50 4E 47‎ شروع می‌شود.</div></div>
+      </div>
+      <div class="card">
+        <div><div class="ext">۰۲</div><div class="name">تحلیل با Pillow</div>
+        <div class="use">برای فرمت‌های رایج، تصویر واقعاً باز و اعتبارسنجی می‌شود تا تشخیص قطعی باشد.</div></div>
+      </div>
+      <div class="card">
+        <div><div class="ext">۰۳</div><div class="name">انتخاب خروجی</div>
+        <div class="use">فقط فرمت‌هایی که این سرور واقعاً می‌تواند تولید کند، به‌عنوان گزینه نمایش داده می‌شوند.</div></div>
+      </div>
+      <div class="card">
+        <div><div class="ext">۰۴</div><div class="name">تبدیل و دانلود</div>
+        <div class="use">تبدیل روی سرور با Pillow انجام و فایل خروجی مستقیماً برای دانلود آماده می‌شود.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="mark">د</span> دگردیس</div>
+    <p class="foot-note">
+      تشخیص فرمت بر پایه‌ی تحلیل امضای باینری فایل و کتابخانه‌ی Pillow است، نه یک مدل احتمالاتی؛
+      برای همین در تشخیص فرمت واقعی، قطعی و قابل‌اعتماد عمل می‌کند.
+    </p>
+    <p class="foot-links"><a href="/admin">ورود مدیر</a></p>
+  </div>
+</footer>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

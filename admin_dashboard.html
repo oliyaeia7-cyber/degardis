@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>داشبورد مدیریت — دگردیس</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="brand" style="text-decoration:none;"><span class="mark">د</span> دگردیس<span class="brand-sub">پنل مدیریت</span></a>
+    <nav class="site-nav">
+      <a href="/">مشاهده‌ی سایت</a>
+    </nav>
+    <a href="/admin/logout" class="header-cta">خروج</a>
+  </div>
+</header>
+
+<section class="section" style="padding-top:56px;">
+  <div class="wrap">
+
+    {% if not admin_password_set %}
+    <div style="background:rgba(178,58,46,0.15); border:1px solid var(--red); color:#f0c9c4; border-radius:6px; padding:14px 18px; font-size:13.5px; margin-bottom:30px;">
+      ⚠️ متغیر محیطی <b style="font-family:var(--font-mono); direction:ltr; display:inline-block;">ADMIN_PASSWORD</b> روی این سرور تنظیم نشده — الان با رمز خالی وارد شدی. حتماً آن را در Render → Environment اضافه کن.
+    </div>
+    {% endif %}
+    {% if not secret_key_set %}
+    <div style="background:rgba(201,154,75,0.15); border:1px solid var(--gold); color:#e8d3ab; border-radius:6px; padding:14px 18px; font-size:13.5px; margin-bottom:30px;">
+      ⚠️ متغیر محیطی <b style="font-family:var(--font-mono); direction:ltr; display:inline-block;">SECRET_KEY</b> تنظیم نشده — با هر ری‌استارت سرور، ورودت باطل می‌شود. آن را هم در Render تنظیم کن (می‌تواند به‌صورت خودکار تولید شود).
+    </div>
+    {% endif %}
+
+    <span class="eyebrow">OVERVIEW</span>
+    <h2 style="margin-top:10px; font-size:clamp(24px,3vw,32px); font-weight:800; margin-bottom:34px;">وضعیت کلی دگردیس</h2>
+
+    <div class="catalog" style="grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); margin-bottom:44px;">
+      <div class="card" style="min-height:auto;">
+        <div><div class="ext">{{ detections }}</div><div class="name">تشخیص فرمت</div></div>
+      </div>
+      <div class="card" style="min-height:auto;">
+        <div><div class="ext">{{ conversions }}</div><div class="name">تبدیل انجام‌شده</div></div>
+      </div>
+      <div class="card" style="min-height:auto;">
+        <div><div class="ext">{{ total_formats }}</div><div class="name">فرمت پشتیبانی‌شده</div></div>
+      </div>
+      <div class="card" style="min-height:auto;">
+        <div><div class="ext" style="font-size:15px;">{{ uptime }}</div><div class="name">مدت فعال‌بودن سرور</div></div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-bottom:44px;">
+      <div>
+        <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">پرتکرارترین فرمت‌های ورودی</h4>
+        {% if top_detected %}
+        <div class="chips">
+          {% for key, count in top_detected %}
+          <span class="chip" style="cursor:default;">{{ key }} · {{ count }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="color:var(--muted); font-size:13.5px;">هنوز داده‌ای ثبت نشده.</p>
+        {% endif %}
+      </div>
+      <div>
+        <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">پرتکرارترین فرمت‌های خروجی</h4>
+        {% if top_converted %}
+        <div class="chips">
+          {% for key, count in top_converted %}
+          <span class="chip" style="cursor:default;">{{ key }} · {{ count }}</span>
+          {% endfor %}
+        </div>
+        {% else %}
+        <p style="color:var(--muted); font-size:13.5px;">هنوز داده‌ای ثبت نشده.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div style="margin-bottom:44px;">
+      <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">افزونه‌های اختیاری Pillow</h4>
+      <div class="chips">
+        <span class="chip" style="cursor:default; {{ 'background:var(--teal); border-color:var(--teal); color:#fff;' if heif_available else '' }}">HEIF/HEIC {{ 'فعال' if heif_available else 'غیرفعال' }}</span>
+        <span class="chip" style="cursor:default; {{ 'background:var(--teal); border-color:var(--teal); color:#fff;' if avif_available else '' }}">AVIF {{ 'فعال' if avif_available else 'غیرفعال' }}</span>
+      </div>
+    </div>
+
+    <div>
+      <h4 style="font-family:var(--font-mono); font-size:12px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-bottom:14px;">فعالیت اخیر</h4>
+      {% if recent_activity %}
+      <div class="specimen" style="grid-template-columns:1fr; display:block; padding:0; background:transparent; border:none;">
+        <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--line); color:var(--muted); text-align:right;">
+              <th style="padding:10px 0; font-weight:600;">ساعت</th>
+              <th style="padding:10px 0; font-weight:600;">عملیات</th>
+              <th style="padding:10px 0; font-weight:600;">جزئیات</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in recent_activity %}
+            <tr style="border-bottom:1px solid var(--line);">
+              <td style="padding:10px 0; font-family:var(--font-mono); direction:ltr; color:var(--muted);">{{ item.time }}</td>
+              <td style="padding:10px 0;">{{ item.action }}</td>
+              <td style="padding:10px 0; font-family:var(--font-mono); direction:ltr; color:var(--paper);">{{ item.detail }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% else %}
+      <p style="color:var(--muted); font-size:13.5px;">هنوز فعالیتی ثبت نشده.</p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
